@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da0c15f0_53257cc0",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesOpenHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2014-05-13T08:44:35Z",
+      "side": 1,
+      "message": "\"Holo (Default)\" needs to be moved to strings.xml so \u0027default\u0027 can be translated.",
+      "revId": "d0f415ae26b2e35508adacc920c8ea4ae809ccce",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
