@@ -32,8 +32,11 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "themes.db";
     private static final String DEFAULT_PKG_NAME = "default";
 
+    private static String sHoloDefaultTitle;
+
     public ThemesOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        sHoloDefaultTitle = context.getString(R.string.holo_default);
     }
 
     @Override
@@ -43,6 +46,10 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
 
         ThemesTable.insertDefaults(db);
         MixnMatchTable.insertDefaults(db);
+    }
+
+    static String getDefaultTitle() {
+        return sHoloDefaultTitle;
     }
 
     @Override
@@ -126,7 +133,7 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
 
         public static void insertDefaults(SQLiteDatabase db) {
             ContentValues values = new ContentValues();
-            values.put(ThemesColumns.TITLE, "Holo (Default)");
+            values.put(ThemesColumns.TITLE, ThemesOpenHelper.getDefaultTitle());
             values.put(ThemesColumns.PKG_NAME, DEFAULT_PKG_NAME);
             values.put(ThemesColumns.PRIMARY_COLOR, 0xff33b5e5);
             values.put(ThemesColumns.SECONDARY_COLOR, 0xff000000);

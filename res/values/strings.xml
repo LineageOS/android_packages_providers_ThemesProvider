@@ -17,5 +17,6 @@
 <resources>
 
     <string name="app_name">Themes Provider</string>
+    <string name="holo_default">Holo (Default)</string>
 
 </resources>
