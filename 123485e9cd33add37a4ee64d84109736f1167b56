@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da0c15f0_11b5b7cc",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemePackageHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2014-05-18T03:59:12Z",
+      "side": 1,
+      "message": "Localize \"Unknown\" in strings.xml",
+      "revId": "123485e9cd33add37a4ee64d84109736f1167b56",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da0c15f0_71ca3351",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemePackageHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2014-05-18T03:59:12Z",
+      "side": 1,
+      "message": "Localize \"Unknown\" in strings.xml",
+      "revId": "123485e9cd33add37a4ee64d84109736f1167b56",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da0c15f0_51c72f45",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesOpenHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2014-05-18T03:59:12Z",
+      "side": 1,
+      "message": "101 chars",
+      "revId": "123485e9cd33add37a4ee64d84109736f1167b56",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
