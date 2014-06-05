@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da0c15f0_be6ac118",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemePackageHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2014-06-05T10:29:08Z",
+      "side": 1,
+      "message": "If",
+      "revId": "cfcbf57448bc1402945cc7b048ba8436e68ede53",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
