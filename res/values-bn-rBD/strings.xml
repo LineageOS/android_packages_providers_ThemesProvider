@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Temų teikėjas</string>
-  <string name="unknown_app_name">Nežinoma</string>
-  <string name="controls_preview_button_text">Normalus</string>
+  <string name="app_name">থিমস প্রদানকারী</string>
+  <string name="unknown_app_name">অজানা</string>
 </resources>
