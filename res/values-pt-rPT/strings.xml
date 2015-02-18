@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Tema-verskaffer</string>
-  <string name="unknown_app_name">Onbekend</string>
-  <string name="controls_preview_button_text">Normaal</string>
+  <string name="app_name">Gestor de Temas</string>
+  <string name="unknown_app_name">Desconhecido</string>
+  <string name="controls_preview_button_text">Normal</string>
 </resources>
