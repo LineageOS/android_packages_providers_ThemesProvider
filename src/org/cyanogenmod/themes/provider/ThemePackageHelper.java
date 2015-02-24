@@ -218,6 +218,7 @@ public class ThemePackageHelper {
                 moveToDefault.add(component);
             }
         }
+        mixnmatch.close();
         String pkgName = ThemeUtils.getDefaultThemePackageName(context);
         ThemeManager manager = (ThemeManager) context.getSystemService(Context.THEME_SERVICE);
         manager.requestThemeChange(pkgName, moveToDefault);
