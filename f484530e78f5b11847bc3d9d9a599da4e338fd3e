@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad45d7e_fc560d05",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesOpenHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-03-03T14:59:09Z",
+      "side": 1,
+      "message": "oops, look like I snuck something in.  This should be added but I can add this as a separate patch.",
+      "revId": "f484530e78f5b11847bc3d9d9a599da4e338fd3e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_dc5b492d",
+        "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-03-03T14:59:09Z",
+      "side": 1,
+      "message": "ACTION_THEME_UPDATED",
+      "revId": "f484530e78f5b11847bc3d9d9a599da4e338fd3e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
