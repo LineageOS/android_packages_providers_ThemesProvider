@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9ad45d7e_b3a5e3b6",
+        "filename": "src/org/cyanogenmod/themes/provider/AppReceiver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-03-04T12:33:32Z",
+      "side": 1,
+      "message": "The logic is bad, will remove the \u0027!\u0027 so we are passing in the correct value.",
+      "parentUuid": "9ad45d7e_70d8811e",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad45d7e_f0a3d14d",
         "filename": "src/org/cyanogenmod/themes/provider/ThemesOpenHelper.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2015-03-04T11:33:42Z",
       "side": 1,
       "message": "SInce we are setting every row to installed the while loop can be removed and the where condition in the sql can be removed.\n\nThen just one update call will update the whole table.",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_13ab0f8b",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesOpenHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-03-04T12:33:32Z",
+      "side": 1,
+      "message": "Agreed",
+      "parentUuid": "9ad45d7e_f0a3d14d",
       "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9ad45d7e_f3af5b92",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-03-04T12:33:32Z",
+      "side": 1,
+      "message": "If we are updating we should not be here.  We should be in the update() method",
+      "parentUuid": "9ad45d7e_50b0dd8b",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad45d7e_f30d9b38",
         "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
         "patchSetId": 3
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "9ad45d7e_5395873e",
+        "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-03-04T12:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ad45d7e_f30d9b38",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad45d7e_b32a037d",
         "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
         "patchSetId": 3
@@ -81,6 +153,24 @@
       "writtenOn": "2015-03-04T11:33:42Z",
       "side": 1,
       "message": "ACTION_THEME_UPDATED",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_33929358",
+        "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-03-04T12:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ad45d7e_b32a037d",
       "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
