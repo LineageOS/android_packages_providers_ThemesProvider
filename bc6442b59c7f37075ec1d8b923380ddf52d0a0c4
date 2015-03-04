@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad45d7e_70d8811e",
+        "filename": "src/org/cyanogenmod/themes/provider/AppReceiver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 9444
+      },
+      "writtenOn": "2015-03-04T11:33:42Z",
+      "side": 1,
+      "message": "This line wasn\u0027t changed but don\u0027t we need to reflect that it is processing? If its an update and is a theme it would still need to go through aapt/idmap.",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_f0a3d14d",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesOpenHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 9444
+      },
+      "writtenOn": "2015-03-04T11:33:42Z",
+      "side": 1,
+      "message": "SInce we are setting every row to installed the while loop can be removed and the where condition in the sql can be removed.\n\nThen just one update call will update the whole table.",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_50b0dd8b",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 9444
+      },
+      "writtenOn": "2015-03-04T11:33:42Z",
+      "side": 1,
+      "message": "We may need to processPreviews if we are updating as well?",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_f30d9b38",
+        "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 9444
+      },
+      "writtenOn": "2015-03-04T11:33:42Z",
+      "side": 1,
+      "message": "2015",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad45d7e_b32a037d",
+        "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 9444
+      },
+      "writtenOn": "2015-03-04T11:33:42Z",
+      "side": 1,
+      "message": "ACTION_THEME_UPDATED",
+      "revId": "bc6442b59c7f37075ec1d8b923380ddf52d0a0c4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
