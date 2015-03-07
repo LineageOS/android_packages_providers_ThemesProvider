@@ -28,6 +28,8 @@ import android.provider.ThemesContract.ThemesColumns;
 import org.cyanogenmod.themes.provider.ThemesOpenHelper;
 
 public class ProviderUtils {
+    private static final String TAG = ProviderUtils.class.getSimpleName();
+
     /**
      * Convenience method for determining if a theme exists in the provider
      * @param context
