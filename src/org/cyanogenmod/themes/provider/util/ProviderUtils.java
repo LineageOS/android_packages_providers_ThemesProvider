@@ -24,7 +24,19 @@ import android.net.Uri;
 import android.provider.ThemesContract;
 import android.provider.ThemesContract.ThemesColumns;
 
+import org.cyanogenmod.themes.provider.ThemePackageHelper;
+
+import java.util.Map;
+
 public class ProviderUtils {
+
+    public static String[] PROCESSABLE_COMPONENTS = {
+            ThemesColumns.MODIFIES_OVERLAYS,
+            ThemesColumns.MODIFIES_STATUS_BAR,
+            ThemesColumns.MODIFIES_NAVIGATION_BAR,
+            ThemesColumns.MODIFIES_ICONS
+    };
+
     /**
      * Convenience method for determining if a theme exists in the provider
      * @param context
@@ -113,4 +125,13 @@ public class ProviderUtils {
                 Uri.fromParts(ThemesContract.Intent.URI_SCHEME_PACKAGE, pkgName, null));
         context.sendBroadcast(intent, Manifest.permission.READ_THEMES);
     }
+
+    public static boolean hasProcessableComponents(Context context, String pkgName) {
+        Map<String, Boolean> capabilities = ThemePackageHelper.getCapabilities(context, pkgName);
+        for(String component : PROCESSABLE_COMPONENTS) {
+            if (capabilities.get(component)) return true;
+        }
+        return false;
+    }
+
 }

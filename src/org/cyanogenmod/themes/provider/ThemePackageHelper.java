@@ -111,6 +111,11 @@ public class ThemePackageHelper {
         // Insert theme capabilities
         insertCapabilities(capabilities, values);
 
+        // If the theme is not processing we can go ahead and send the broadcast now.
+        if (!isProcessing) {
+            ProviderUtils.sendThemeInstalledBroadcast(context, pi.packageName);
+        }
+
         context.getContentResolver().insert(ThemesColumns.CONTENT_URI, values);
     }
 
