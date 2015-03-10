@@ -53,11 +53,22 @@ public class AppReceiver extends BroadcastReceiver {
                 final int result = intent.getIntExtra(Intent.EXTRA_THEME_RESULT,
                         PackageManager.INSTALL_FAILED_THEME_UNKNOWN_ERROR);
                 if (result == 0) {
-                    if (ProviderUtils.themeExistsInProvider(context, themePkgName)) {
+                    boolean existsInProvider =
+                            ProviderUtils.themeExistsInProvider(context, themePkgName);
+                    boolean hasProcessableComponents =
+                            ProviderUtils.hasProcessableComponents(context, themePkgName);
+                    if (existsInProvider && hasProcessableComponents) {
+                        // PACKAGE_REPLACED would have been called first and theme processing
+                        // would be kicked off. So we are done processing
                         ThemePackageHelper.updatePackage(context, themePkgName, false);
-                    } else {
-                        // Edge case where app was not a theme in previous install
-                        ThemePackageHelper.insertPackage(context, themePkgName, false);
+                    } else if (existsInProvider && !hasProcessableComponents) {
+                        // PACKAGE_REPLACED has not been called yet and so processing should
+                        // be 'true' to trigger a broadcast when PACKAGE_REPLACED is called
+                        ThemePackageHelper.updatePackage(context, themePkgName, true);
+                    } else if (!existsInProvider && !hasProcessableComponents) {
+                        // PACKAGE_ADDED has not been called yet and so processing should
+                        // be 'true' to trigger a broadcast when PACKAGE_ADDED is called
+                        ThemePackageHelper.insertPackage(context, themePkgName, true);
                     }
                 } else {
                     Log.e(TAG, "Unable to update theme " + themePkgName + ", result=" + result);
