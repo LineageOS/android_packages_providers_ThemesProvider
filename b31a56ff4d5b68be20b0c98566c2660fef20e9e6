@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad45d7e_6520b39c",
+        "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 9444
+      },
+      "writtenOn": "2015-03-10T12:36:39Z",
+      "side": 1,
+      "message": "Not used in this patch.",
+      "revId": "b31a56ff4d5b68be20b0c98566c2660fef20e9e6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
