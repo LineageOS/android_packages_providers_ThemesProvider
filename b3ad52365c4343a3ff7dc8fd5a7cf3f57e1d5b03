@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac969e8_29a349a0",
+        "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-03-12T05:14:43Z",
+      "side": 1,
+      "message": "I think status_bar and navigation_bar can be omitted.  These would be in assets/overlays/com.android.systemui and therefore MODIFIES_OVERLAYS would be true.\n\nTwo less things to check for ;)",
+      "revId": "b3ad52365c4343a3ff7dc8fd5a7cf3f57e1d5b03",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
