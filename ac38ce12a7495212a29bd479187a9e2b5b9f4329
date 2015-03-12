@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac969e8_2c207749",
+        "filename": "src/org/cyanogenmod/themes/provider/PreviewGenerationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 9444
+      },
+      "writtenOn": "2015-03-12T11:27:40Z",
+      "side": 1,
+      "message": "lw",
+      "revId": "ac38ce12a7495212a29bd479187a9e2b5b9f4329",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
