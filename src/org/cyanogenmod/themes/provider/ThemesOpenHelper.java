@@ -39,6 +39,7 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 14;
     private static final String DATABASE_NAME = "themes.db";
     private static final String SYSTEM_THEME_PKG_NAME = ThemeConfig.SYSTEM_DEFAULT;
+    private static final String OLD_SYSTEM_THEME_PKG_NAME = "holo";
 
     private Context mContext;
 
@@ -182,9 +183,7 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
                 ThemesColumns.TITLE, "Holo", ThemesColumns.PKG_NAME, "holo"));
 
         // we need to update any existing themes
-        final String[] projection = { ThemesColumns.PKG_NAME, ThemesColumns.MODIFIES_STATUS_BAR,
-                ThemesColumns.MODIFIES_ICONS, ThemesColumns.MODIFIES_OVERLAYS,
-                ThemesColumns.MODIFIES_LAUNCHER, ThemesColumns.MODIFIES_BOOT_ANIM };
+        final String[] projection = { ThemesColumns.PKG_NAME };
         final String selection = ThemesColumns.MODIFIES_OVERLAYS + "=?";
         final String[] selectionArgs = { "1" };
         final Cursor c = db.query(ThemesTable.TABLE_NAME, projection, selection, selectionArgs,
@@ -220,7 +219,8 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
                 final String pkgName = c.getString(0);
                 final boolean isLegacyTheme = c.getInt(1) == 1;
                 boolean hasSystemUi = false;
-                if (SYSTEM_THEME_PKG_NAME.equals(pkgName) || isLegacyTheme) {
+                if (SYSTEM_THEME_PKG_NAME.equals(pkgName) ||
+                        OLD_SYSTEM_THEME_PKG_NAME.equals(pkgName) || isLegacyTheme) {
                     hasSystemUi = true;
                 } else {
                     try {
@@ -264,7 +264,8 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
                 final String pkgName = c.getString(0);
                 final boolean isLegacyTheme = c.getInt(1) == 1;
                 boolean hasSystemUi = false;
-                if (SYSTEM_THEME_PKG_NAME.equals(pkgName) || isLegacyTheme) {
+                if (SYSTEM_THEME_PKG_NAME.equals(pkgName) ||
+                        OLD_SYSTEM_THEME_PKG_NAME.endsWith(pkgName) || isLegacyTheme) {
                     hasSystemUi = true;
                 } else {
                     try {
@@ -324,7 +325,8 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
             while(c.moveToNext()) {
                 final String pkgName = c.getString(0);
                 int targetSdk = -1;
-                if (SYSTEM_THEME_PKG_NAME.equals(pkgName)) {
+                if (SYSTEM_THEME_PKG_NAME.equals(pkgName) ||
+                            OLD_SYSTEM_THEME_PKG_NAME.endsWith(pkgName)) {
                     // 0 is a special value used for the system theme, not to be confused with the
                     // default theme which may not be the same as the system theme.
                     targetSdk = 0;
@@ -349,14 +351,13 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
     private void upgradeToVersion11(SQLiteDatabase db) {
         // Update holo theme to be called "system"
         final String NEW_THEME_TITLE = "System";
-        final String PREV_SYSTEM_PKG_NAME = "holo";
         String holoToSystem = String.format("UPDATE TABLE %s " +
                         "SET title=%s, pkg_name=%s " +
                         "WHERE %s='%s'",
                 ThemesTable.TABLE_NAME,
                 NEW_THEME_TITLE,
                 SYSTEM_THEME_PKG_NAME,
-                ThemesColumns.PKG_NAME, PREV_SYSTEM_PKG_NAME);
+                ThemesColumns.PKG_NAME, OLD_SYSTEM_THEME_PKG_NAME);
         db.execSQL(holoToSystem);
 
     }
