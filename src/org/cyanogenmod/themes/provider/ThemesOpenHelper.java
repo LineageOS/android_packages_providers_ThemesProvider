@@ -36,7 +36,7 @@ import android.util.Log;
 public class ThemesOpenHelper extends SQLiteOpenHelper {
     private static final String TAG = ThemesOpenHelper.class.getName();
 
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 15;
     private static final String DATABASE_NAME = "themes.db";
     private static final String SYSTEM_THEME_PKG_NAME = ThemeConfig.SYSTEM_DEFAULT;
     private static final String OLD_SYSTEM_THEME_PKG_NAME = "holo";
@@ -114,6 +114,10 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
             if (oldVersion == 13) {
                 upgradeToVersion14(db);
                 oldVersion = 14;
+            }
+            if (oldVersion == 14) {
+                upgradeToVersion15(db);
+                oldVersion = 15;
             }
             if (oldVersion != DATABASE_VERSION) {
                 Log.e(TAG, "Recreating db because unknown database version: " + oldVersion);
@@ -403,6 +407,81 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
+    private void upgradeToVersion15(SQLiteDatabase db) {
+        // add MODIFIES_LAUNCHER_ANIMATED column to themes db
+        String addLauncherAnimated = String.format("ALTER TABLE %s ADD COLUMN %s INTEGER DEFAULT 0",
+                ThemesTable.TABLE_NAME, ThemesColumns.MODIFIES_LAUNCHER_ANIMATED);
+
+        // add MODIFIES_LAUNCHER_MULTI column to themes db
+        String addLauncherMulti = String.format("ALTER TABLE %s ADD COLUMN %s INTEGER DEFAULT 0",
+                ThemesTable.TABLE_NAME, ThemesColumns.MODIFIES_LAUNCHER_MULTI);
+
+        // add ANIMATED_WALLPAPER_THUMBNAIL column to preview db
+        String addThumbnailAnimated = String.format("ALTER TABLE %s ADD COLUMN %s BLOB",
+                PreviewsTable.TABLE_NAME, PreviewColumns.ANIMATED_WALLPAPER_THUMBNAIL);
+
+        // add ANIMATED_WALLPAPER_PREVIEW column to preview db
+        String addPreviewAnimated = String.format("ALTER TABLE %s ADD COLUMN %s BLOB",
+                PreviewsTable.TABLE_NAME, PreviewColumns.ANIMATED_WALLPAPER_PREVIEW);
+
+        // add MULTI_WALLPAPER_THUMBNAIL column to preview db
+        String addThumbnailMulti = String.format("ALTER TABLE %s ADD COLUMN %s BLOB",
+                PreviewsTable.TABLE_NAME, PreviewColumns.MULTI_WALLPAPER_THUMBNAIL);
+
+        // add MULTI_WALLPAPER_PREVIEW column to preview db
+        String addPreviewMulti = String.format("ALTER TABLE %s ADD COLUMN %s BLOB",
+                PreviewsTable.TABLE_NAME, PreviewColumns.MULTI_WALLPAPER_PREVIEW);
+
+        // add data column to mixnmatch db
+        String addDataColumn = String.format("ALTER TABLE %s ADD COLUMN %s TEXT",
+                MixnMatchTable.TABLE_NAME, MixnMatchColumns.COL_DATA);
+
+        db.execSQL(addLauncherAnimated);
+        db.execSQL(addLauncherMulti);
+        db.execSQL(addThumbnailAnimated);
+        db.execSQL(addPreviewAnimated);
+        db.execSQL(addThumbnailMulti);
+        db.execSQL(addPreviewMulti);
+        db.execSQL(addDataColumn);
+
+        // we need to update any existing themes
+        final String[] projection = { ThemesColumns.PKG_NAME };
+        final Cursor c = db.query(ThemesTable.TABLE_NAME, projection, null, null, null, null, null);
+        if (c != null) {
+            while(c.moveToNext()) {
+                final String pkgName = c.getString(0);
+                boolean hasAnimatedSupport = false;
+                boolean hasMultiSupport = false;
+                try {
+                    Context themeContext = mContext.createPackageContext(pkgName, 0);
+                    hasAnimatedSupport = ThemePackageHelper.hasThemeComponent(themeContext,
+                            ThemePackageHelper.sComponentToFolderName.get(
+                                    ThemesColumns.MODIFIES_LAUNCHER_ANIMATED));
+                    hasMultiSupport = ThemePackageHelper.hasThemeComponent(themeContext,
+                            ThemePackageHelper.sComponentToFolderName.get(
+                                    ThemesColumns.MODIFIES_LAUNCHER_MULTI));
+
+                    if (hasAnimatedSupport || hasMultiSupport) {
+                        // Update columns in themes db
+                        db.execSQL(String.format("UPDATE %S SET %s='%d', %s='%d' WHERE %s='%s'",
+                                ThemesTable.TABLE_NAME, ThemesColumns.MODIFIES_LAUNCHER_ANIMATED,
+                                hasAnimatedSupport ? 1 : 0, ThemesColumns.MODIFIES_LAUNCHER_MULTI,
+                                hasMultiSupport ? 1 : 0, ThemesColumns.PKG_NAME, pkgName));
+
+                        // Update columns in preview db
+                        Intent intent = new Intent(mContext, PreviewGenerationService.class);
+                        intent.setAction(PreviewGenerationService.ACTION_INSERT);
+                        intent.putExtra(PreviewGenerationService.EXTRA_PKG_NAME, pkgName);
+                        mContext.startService(intent);
+                    }
+                } catch (PackageManager.NameNotFoundException e) {
+                    // default to false
+                }
+            }
+            c.close();
+        }
+    }
+
     private void dropTables(SQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS " + ThemesTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MixnMatchTable.TABLE_NAME);
@@ -430,6 +509,8 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
                         ThemesColumns.PRIMARY_COLOR + " TEXT," +
                         ThemesColumns.SECONDARY_COLOR + " TEXT," +
                         ThemesColumns.MODIFIES_LAUNCHER + " INTEGER DEFAULT 0, " +
+                        ThemesColumns.MODIFIES_LAUNCHER_ANIMATED + " INTEGER DEFAULT 0, " +
+                        ThemesColumns.MODIFIES_LAUNCHER_MULTI + " INTEGER DEFAULT 0, " +
                         ThemesColumns.MODIFIES_LOCKSCREEN + " INTEGER DEFAULT 0, " +
                         ThemesColumns.MODIFIES_ICONS + " INTEGER DEFAULT 0, " +
                         ThemesColumns.MODIFIES_BOOT_ANIM + " INTEGER DEFAULT 0, " +
@@ -464,6 +545,8 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
             values.put(ThemesColumns.MODIFIES_FONTS, 1);
             values.put(ThemesColumns.MODIFIES_ICONS, 1);
             values.put(ThemesColumns.MODIFIES_LAUNCHER, 1);
+            values.put(ThemesColumns.MODIFIES_LAUNCHER_ANIMATED, 0);
+            values.put(ThemesColumns.MODIFIES_LAUNCHER_MULTI, 0);
             values.put(ThemesColumns.MODIFIES_LOCKSCREEN, 1);
             values.put(ThemesColumns.MODIFIES_NOTIFICATIONS, 1);
             values.put(ThemesColumns.MODIFIES_RINGTONES, 1);
@@ -487,7 +570,8 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
                         MixnMatchColumns.COL_KEY + " TEXT PRIMARY KEY," +
                         MixnMatchColumns.COL_VALUE + " TEXT," +
                         MixnMatchColumns.COL_PREV_VALUE + " TEXT," +
-                        MixnMatchColumns.COL_UPDATE_TIME + " INTEGER DEFAULT 0" +
+                        MixnMatchColumns.COL_UPDATE_TIME + " INTEGER DEFAULT 0," +
+                        MixnMatchColumns.COL_DATA + " TEXT" +
                         ")";
 
         public static void insertDefaults(SQLiteDatabase db) {
@@ -529,6 +613,10 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
                         PreviewColumns.STYLE_THUMBNAIL + " BLOB, " +
                         PreviewColumns.WALLPAPER_PREVIEW + " BLOB, " +
                         PreviewColumns.WALLPAPER_THUMBNAIL + " BLOB, " +
+                        PreviewColumns.ANIMATED_WALLPAPER_PREVIEW + " BLOB, " +
+                        PreviewColumns.ANIMATED_WALLPAPER_THUMBNAIL + " BLOB, " +
+                        PreviewColumns.MULTI_WALLPAPER_PREVIEW + " BLOB, " +
+                        PreviewColumns.MULTI_WALLPAPER_THUMBNAIL + " BLOB, " +
                         PreviewColumns.LOCK_WALLPAPER_PREVIEW + " BLOB, " +
                         PreviewColumns.LOCK_WALLPAPER_THUMBNAIL + " BLOB, " +
                         PreviewColumns.BOOTANIMATION_THUMBNAIL + " BLOB, " +
