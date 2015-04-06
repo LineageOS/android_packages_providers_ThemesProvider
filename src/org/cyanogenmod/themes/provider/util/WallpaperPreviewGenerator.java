@@ -23,11 +23,13 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.content.res.ThemeConfig;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 
 import org.cyanogenmod.themes.provider.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class WallpaperPreviewGenerator {
     private static final String WALLPAPER_ASSET_PATH = "wallpapers";
@@ -59,6 +61,16 @@ public class WallpaperPreviewGenerator {
                 items.wpPreview = BitmapUtils.getBitmapFromAsset(themeContext, path,
                         mPreviewSize, mPreviewSize);
             }
+            path = ThemeUtils.getAnimatedWallpaperPath(assets);
+            if (path != null) {
+                items.wpAnimatedPreview = GifUtils.getBitmapFromAsset(themeContext, path,
+                        mPreviewSize, mPreviewSize);
+            }
+            List<String> paths = ThemeUtils.getMultiWallpaperPaths(assets);
+            if (paths != null) {
+                items.wpMultiPreview = BitmapUtils.getStitchedBitmapFromAssets(themeContext, paths,
+                        mPreviewSize, mPreviewSize);
+            }
             path = ThemeUtils.getLockscreenWallpaperPath(assets);
             if (path != null) {
                 items.lsPreview = BitmapUtils.getBitmapFromAsset(themeContext, path,
@@ -67,6 +79,14 @@ public class WallpaperPreviewGenerator {
         }
         if (items.wpPreview != null) {
             items.wpThumbnail = Bitmap.createScaledBitmap(items.wpPreview, mThumbnailSize,
+                    mThumbnailSize, true);
+        }
+        if (items.wpAnimatedPreview != null) {
+            items.wpAnimatedThumbnail = Bitmap.createScaledBitmap(items.wpAnimatedPreview,
+                    mThumbnailSize, mThumbnailSize, true);
+        }
+        if (items.wpMultiPreview != null) {
+            items.wpMultiThumbnail = Bitmap.createScaledBitmap(items.wpMultiPreview, mThumbnailSize,
                     mThumbnailSize, true);
         }
         if (items.lsPreview != null) {
@@ -80,6 +100,14 @@ public class WallpaperPreviewGenerator {
         // Wallpaper items
         public Bitmap wpThumbnail;
         public Bitmap wpPreview;
+
+        // Animated wallpaper items
+        public Bitmap wpAnimatedThumbnail;
+        public Bitmap wpAnimatedPreview;
+
+        // Multi wallpaper items
+        public Bitmap wpMultiThumbnail;
+        public Bitmap wpMultiPreview;
 
         // Lockscreen wallpaper items
         public Bitmap lsThumbnail;

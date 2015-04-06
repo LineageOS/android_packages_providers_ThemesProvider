@@ -349,6 +349,19 @@ public class ThemesProvider extends ContentProvider {
                             sb.append(String.format(" FROM previews WHERE %s=%d)",
                                     PreviewColumns.THEME_ID, id));
                             delimeter = ",";
+                        } else if (ThemesColumns.MODIFIES_LAUNCHER_ANIMATED.equals(component)) {
+                            sb.append(delimeter).append("(SELECT ");
+                            sb.append(String.format("%s",
+                                    PreviewColumns.ANIMATED_WALLPAPER_PREVIEW));
+                            sb.append(String.format(" FROM previews WHERE %s=%d)",
+                                    PreviewColumns.THEME_ID, id));
+                            delimeter = ",";
+                        } else if (ThemesColumns.MODIFIES_LAUNCHER_MULTI.equals(component)) {
+                            sb.append(delimeter).append("(SELECT ");
+                            sb.append(String.format("%s", PreviewColumns.MULTI_WALLPAPER_PREVIEW));
+                            sb.append(String.format(" FROM previews WHERE %s=%d)",
+                                    PreviewColumns.THEME_ID, id));
+                            delimeter = ",";
                         } else if (ThemesColumns.MODIFIES_NAVIGATION_BAR.equals(component)) {
                             sb.append(delimeter).append("(SELECT ");
                             sb.append(TextUtils.join(",",

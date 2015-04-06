@@ -34,6 +34,7 @@ import android.provider.ThemesContract;
 import android.provider.ThemesContract.MixnMatchColumns;
 import android.provider.ThemesContract.ThemesColumns;
 import android.provider.ThemesContract.ThemesColumns.InstallState;
+import android.text.TextUtils;
 import android.util.Log;
 import org.cyanogenmod.themes.provider.util.ProviderUtils;
 
@@ -59,7 +60,7 @@ public class ThemePackageHelper {
         sComponentToFolderName.put(ThemesColumns.MODIFIES_BOOT_ANIM, "bootanimation");
         sComponentToFolderName.put(ThemesColumns.MODIFIES_FONTS, "fonts");
         sComponentToFolderName.put(ThemesColumns.MODIFIES_ICONS, "icons");
-        sComponentToFolderName.put(ThemesColumns.MODIFIES_LAUNCHER, "wallpapers");
+        sComponentToFolderName.put(ThemesColumns.MODIFIES_LAUNCHER, ThemeUtils.WALLPAPER_PATH);
         sComponentToFolderName.put(ThemesColumns.MODIFIES_LOCKSCREEN, "lockscreen");
         sComponentToFolderName.put(ThemesColumns.MODIFIES_ALARMS, "alarms");
         sComponentToFolderName.put(ThemesColumns.MODIFIES_NOTIFICATIONS, "notifications");
@@ -68,6 +69,10 @@ public class ThemePackageHelper {
                 "overlays/com.android.systemui");
         sComponentToFolderName.put(ThemesColumns.MODIFIES_NAVIGATION_BAR,
                 "overlays/com.android.systemui");
+        sComponentToFolderName.put(ThemesColumns.MODIFIES_LAUNCHER_ANIMATED,
+                ThemeUtils.ANIMATED_WALLPAPER_PATH);
+        sComponentToFolderName.put(ThemesColumns.MODIFIES_LAUNCHER_MULTI,
+                ThemeUtils.MULTI_WALLPAPER_PATH);
     }
 
     public static boolean insertPackage(Context context, String pkgName, boolean isProcessing)
@@ -322,7 +327,14 @@ public class ThemePackageHelper {
         try {
             String[] assetList = assetManager.list(component);
             if (assetList != null && assetList.length > 0) {
-                found = true;
+                if (ThemeUtils.WALLPAPER_PATH.equals(component)) {
+                    String wallpaper = ThemeUtils.getWallpaperPath(assetManager);
+                    if (!TextUtils.isEmpty(wallpaper)) {
+                        found = true;
+                    }
+                } else {
+                    found = true;
+                }
             }
         } catch (IOException e) {
             Log.e(TAG, "There was an error checking for asset " + component, e);
@@ -333,8 +345,11 @@ public class ThemePackageHelper {
     // Presently we are defining a "presentable" theme as any theme
     // which has icons, wallpaper, and overlays
     public static boolean isPresentableTheme(Map<String, Boolean> implementMap) {
-        return implementMap != null &&
-                hasThemeComponent(implementMap, ThemesColumns.MODIFIES_LAUNCHER) &&
+        boolean hasWallpaperComponent =
+                hasThemeComponent(implementMap, ThemesColumns.MODIFIES_LAUNCHER) ||
+                hasThemeComponent(implementMap, ThemesColumns.MODIFIES_LAUNCHER_ANIMATED) ||
+                hasThemeComponent(implementMap, ThemesColumns.MODIFIES_LAUNCHER_MULTI);
+        return implementMap != null && hasWallpaperComponent &&
                 hasThemeComponent(implementMap, ThemesColumns.MODIFIES_OVERLAYS);
     }
 

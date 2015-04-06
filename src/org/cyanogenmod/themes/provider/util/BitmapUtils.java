@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapRegionDecoder;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.util.Log;
@@ -31,6 +32,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class BitmapUtils {
     private static final String TAG = "BitmapUtils";
@@ -158,6 +160,28 @@ public class BitmapUtils {
         return bitmap;
     }
 
+    public static Bitmap getStitchedBitmapFromAssets(Context ctx, List<String> paths, int reqWidth,
+            int reqHeight) {
+        if (ctx == null || paths == null || paths.isEmpty()) {
+            return null;
+        }
+
+        int width = reqWidth / paths.size();
+        Bitmap bitmap = Bitmap.createBitmap(reqWidth, reqHeight, Bitmap.Config.RGB_565);
+        Bitmap tempBitmap = null;
+        Canvas canvas = new Canvas(bitmap);
+        try {
+            AssetManager assets = ctx.getAssets();
+            for (int i = 0; i < paths.size(); i++) {
+                InputStream is = assets.open(paths.get(i));
+                tempBitmap = decodeStream(is, width, reqHeight);
+                canvas.drawBitmap(tempBitmap, i * width, 0, null);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
 
     /**
      * For excessively large images with an awkward ratio we

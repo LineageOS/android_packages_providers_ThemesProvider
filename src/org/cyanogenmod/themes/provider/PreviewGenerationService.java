@@ -80,6 +80,8 @@ public class PreviewGenerationService extends IntentService {
                 hasSystemUi = sysUiIndex >= 0 && c.getInt(sysUiIndex) == 1;
                 hasIcons = c.getInt(c.getColumnIndex(ThemesColumns.MODIFIES_ICONS)) == 1;
                 hasWallpaper = c.getInt(c.getColumnIndex(ThemesColumns.MODIFIES_LAUNCHER)) == 1 ||
+                        c.getInt(c.getColumnIndex(ThemesColumns.MODIFIES_LAUNCHER_ANIMATED)) == 1 ||
+                        c.getInt(c.getColumnIndex(ThemesColumns.MODIFIES_LAUNCHER_MULTI)) == 1 ||
                         c.getInt(c.getColumnIndex(ThemesColumns.MODIFIES_LOCKSCREEN)) == 1;
                 hasStyles = c.getInt(c.getColumnIndex(ThemesColumns.MODIFIES_OVERLAYS)) == 1;
                 hasBootanimation =
@@ -203,6 +205,14 @@ public class PreviewGenerationService extends IntentService {
                         getBitmapBlobJpg(wallpaperItems.wpPreview));
                 values.put(PreviewColumns.WALLPAPER_THUMBNAIL,
                         getBitmapBlobPng(wallpaperItems.wpThumbnail));
+                values.put(PreviewColumns.ANIMATED_WALLPAPER_PREVIEW,
+                        getBitmapBlobJpg(wallpaperItems.wpAnimatedPreview));
+                values.put(PreviewColumns.ANIMATED_WALLPAPER_THUMBNAIL,
+                        getBitmapBlobPng(wallpaperItems.wpAnimatedThumbnail));
+                values.put(PreviewColumns.MULTI_WALLPAPER_PREVIEW,
+                        getBitmapBlobJpg(wallpaperItems.wpMultiPreview));
+                values.put(PreviewColumns.MULTI_WALLPAPER_THUMBNAIL,
+                        getBitmapBlobPng(wallpaperItems.wpMultiThumbnail));
                 values.put(PreviewColumns.LOCK_WALLPAPER_PREVIEW,
                         getBitmapBlobJpg(wallpaperItems.lsPreview));
                 values.put(PreviewColumns.LOCK_WALLPAPER_THUMBNAIL,
