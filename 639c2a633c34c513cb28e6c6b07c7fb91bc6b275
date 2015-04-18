@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa7ab95a_31029a3f",
+        "filename": "src/org/cyanogenmod/themes/provider/util/BitmapUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 9444
+      },
+      "writtenOn": "2015-04-18T08:40:38Z",
+      "side": 1,
+      "message": "How about getStichedBitmapFromAssets? Or something that indicates that these images are horizontally stitched side by side.",
+      "revId": "639c2a633c34c513cb28e6c6b07c7fb91bc6b275",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
