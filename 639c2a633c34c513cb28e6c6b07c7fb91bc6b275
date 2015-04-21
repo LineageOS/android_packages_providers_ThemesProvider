@@ -16,6 +16,24 @@
       "revId": "639c2a633c34c513cb28e6c6b07c7fb91bc6b275",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa7ab95a_9876223d",
+        "filename": "src/org/cyanogenmod/themes/provider/util/BitmapUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-04-21T04:00:13Z",
+      "side": 1,
+      "message": "I agree that the name should be something more indicative of what this method is actually doing.",
+      "parentUuid": "fa7ab95a_31029a3f",
+      "revId": "639c2a633c34c513cb28e6c6b07c7fb91bc6b275",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
