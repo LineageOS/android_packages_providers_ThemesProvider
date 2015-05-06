@@ -224,6 +224,9 @@ public class ThemePackageHelper {
         String where = ThemesColumns.PKG_NAME + "=?";
         String[] args = { pi.packageName };
         context.getContentResolver().update(ThemesColumns.CONTENT_URI, values, where, args);
+
+        // We should reapply any components that are currently applied for this theme.
+        reapplyInstalledComponentsForTheme(context, pi.packageName);
     }
 
     public static void removePackage(Context context, String pkgToRemove) {
