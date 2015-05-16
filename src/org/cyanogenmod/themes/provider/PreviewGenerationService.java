@@ -41,8 +41,6 @@ import org.cyanogenmod.themes.provider.util.WallpaperPreviewGenerator;
 import org.cyanogenmod.themes.provider.util.WallpaperPreviewGenerator.WallpaperItems;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
  * Copies images from the theme APK to the local provider's cache
@@ -167,137 +165,65 @@ public class PreviewGenerationService extends IntentService {
             int id = cursor.getInt(cursor.getColumnIndexOrThrow(ThemesColumns._ID));
             cursor.close();
 
-            List<ContentValues> themeValues = new ArrayList<ContentValues>();
-            ContentValues values = null;
+            ContentValues values = new ContentValues();
+            values.put(PreviewColumns.THEME_ID, id);
             if (items != null) {
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_STATUSBAR_BACKGROUND,
+                values.put(PreviewColumns.STATUSBAR_BACKGROUND,
                         getBitmapBlobPng(items.statusbarBackground));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_STATUSBAR_BLUETOOTH_ICON,
+                values.put(PreviewColumns.STATUSBAR_BLUETOOTH_ICON,
                         getBitmapBlobPng(items.bluetoothIcon));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_STATUSBAR_WIFI_ICON,
+                values.put(PreviewColumns.STATUSBAR_WIFI_ICON,
                         getBitmapBlobPng(items.wifiIcon));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_STATUSBAR_SIGNAL_ICON,
+                values.put(PreviewColumns.STATUSBAR_SIGNAL_ICON,
                         getBitmapBlobPng(items.signalIcon));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_STATUSBAR_BATTERY_PORTRAIT,
+                values.put(PreviewColumns.STATUSBAR_BATTERY_PORTRAIT,
                         getBitmapBlobPng(items.batteryPortrait));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_STATUSBAR_BATTERY_LANDSCAPE,
+                values.put(PreviewColumns.STATUSBAR_BATTERY_LANDSCAPE,
                         getBitmapBlobPng(items.batteryLandscape));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_STATUSBAR_BATTERY_CIRCLE,
+                values.put(PreviewColumns.STATUSBAR_BATTERY_CIRCLE,
                         getBitmapBlobPng(items.batteryCircle));
-                themeValues.add(values);
-
-                values = createPreviewEntryInt(id, PreviewColumns.KEY_STATUSBAR_CLOCK_TEXT_COLOR,
-                        items.clockColor);
-                themeValues.add(values);
-
-                values = createPreviewEntryInt(id,
-                        PreviewColumns.KEY_STATUSBAR_WIFI_COMBO_MARGIN_END, items.wifiMarginEnd);
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_NAVBAR_BACKGROUND,
+                values.put(PreviewColumns.STATUSBAR_CLOCK_TEXT_COLOR, items.clockColor);
+                values.put(PreviewColumns.STATUSBAR_WIFI_COMBO_MARGIN_END, items.wifiMarginEnd);
+                values.put(PreviewColumns.NAVBAR_BACKGROUND,
                         getBitmapBlobPng(items.navbarBackground));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_NAVBAR_BACK_BUTTON,
+                values.put(PreviewColumns.NAVBAR_BACK_BUTTON,
                         getBitmapBlobPng(items.navbarBack));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_NAVBAR_HOME_BUTTON,
+                values.put(PreviewColumns.NAVBAR_HOME_BUTTON,
                         getBitmapBlobPng(items.navbarHome));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_NAVBAR_RECENT_BUTTON,
+                values.put(PreviewColumns.NAVBAR_RECENT_BUTTON,
                         getBitmapBlobPng(items.navbarRecent));
-                themeValues.add(values);
             }
             if (icons != null) {
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_ICON_PREVIEW_1,
-                        getBitmapBlobPng(icons.icon1));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_ICON_PREVIEW_2,
-                        getBitmapBlobPng(icons.icon2));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_ICON_PREVIEW_3,
-                        getBitmapBlobPng(icons.icon3));
-                themeValues.add(values);
+                values.put(PreviewColumns.ICON_PREVIEW_1, getBitmapBlobPng(icons.icon1));
+                values.put(PreviewColumns.ICON_PREVIEW_2, getBitmapBlobPng(icons.icon2));
+                values.put(PreviewColumns.ICON_PREVIEW_3, getBitmapBlobPng(icons.icon3));
             }
             if (wallpaperItems != null) {
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_WALLPAPER_PREVIEW,
+                values.put(PreviewColumns.WALLPAPER_PREVIEW,
                         getBitmapBlobJpg(wallpaperItems.wpPreview));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_WALLPAPER_THUMBNAIL,
+                values.put(PreviewColumns.WALLPAPER_THUMBNAIL,
                         getBitmapBlobPng(wallpaperItems.wpThumbnail));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_LOCK_WALLPAPER_PREVIEW,
+                values.put(PreviewColumns.LOCK_WALLPAPER_PREVIEW,
                         getBitmapBlobJpg(wallpaperItems.lsPreview));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_LOCK_WALLPAPER_THUMBNAIL,
+                values.put(PreviewColumns.LOCK_WALLPAPER_THUMBNAIL,
                         getBitmapBlobPng(wallpaperItems.lsThumbnail));
-                themeValues.add(values);
             }
             if (styleItems != null) {
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_STYLE_THUMBNAIL,
-                        getBitmapBlobPng(styleItems.thumbnail));
-                themeValues.add(values);
-
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_STYLE_PREVIEW,
-                        getBitmapBlobPng(styleItems.preview));
-                themeValues.add(values);
+                values.put(PreviewColumns.STYLE_THUMBNAIL, getBitmapBlobPng(styleItems.thumbnail));
+                values.put(PreviewColumns.STYLE_PREVIEW, getBitmapBlobPng(styleItems.preview));
             }
             if (bootAnim != null) {
-                values = createPreviewEntryBlob(id, PreviewColumns.KEY_BOOTANIMATION_THUMBNAIL,
-                        getBitmapBlobPng(bootAnim));
-                themeValues.add(values);
+                values.put(PreviewColumns.BOOTANIMATION_THUMBNAIL, getBitmapBlobPng(bootAnim));
             }
 
-            if (!themeValues.isEmpty()) {
-                selection = PreviewColumns.THEME_ID + "=? AND " + PreviewColumns.COL_KEY + "=?";
-                for (ContentValues contentValues : themeValues) {
-                    selectionArgs = new String[]{String.valueOf(id),
-                            contentValues.getAsString(PreviewColumns.COL_KEY)};
-                    // Try an update first, if that returns 0 then we need to insert these values
-                    if (resolver.update(PreviewColumns.CONTENT_URI, contentValues, selection,
-                            selectionArgs) == 0) {
-                        resolver.insert(PreviewColumns.CONTENT_URI, contentValues);
-                    }
-                }
+            selection = PreviewColumns.THEME_ID + "=?";
+            selectionArgs = new String[] { String.valueOf(id) };
+            // Try an update first, if that returns 0 then we need to insert these values
+            if (resolver.update(
+                    PreviewColumns.CONTENT_URI, values, selection, selectionArgs) == 0) {
+                resolver.insert(PreviewColumns.CONTENT_URI, values);
             }
         }
-    }
-
-    private static ContentValues createPreviewEntryBlob(int id, String key, byte[] value) {
-        ContentValues values = new ContentValues();
-        values.put(PreviewColumns.THEME_ID, id);
-        values.put(PreviewColumns.COL_KEY, key);
-        values.put(PreviewColumns.COL_VALUE, value);
-
-        return values;
-    }
-
-    private static ContentValues createPreviewEntryInt(int id, String key, int value) {
-        ContentValues values = new ContentValues();
-        values.put(PreviewColumns.THEME_ID, id);
-        values.put(PreviewColumns.COL_KEY, key);
-        values.put(PreviewColumns.COL_VALUE, value);
-
-        return values;
     }
 
     private static byte[] getBitmapBlobPng(Bitmap bmp) {
