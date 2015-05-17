@@ -268,27 +268,34 @@ public class PreviewGenerationService extends IntentService {
                 themeValues.add(values);
             }
             if (wallpaperItems != null) {
-                path = compressAndSaveJpg(wallpaperItems.wpPreview, filesDir, pkgName,
-                        PreviewColumns.KEY_WALLPAPER_PREVIEW);
-                values = createPreviewEntryString(id, PreviewColumns.KEY_WALLPAPER_PREVIEW, path);
-                themeValues.add(values);
-
-                path = compressAndSavePng(wallpaperItems.wpThumbnail, filesDir, pkgName,
-                        PreviewColumns.KEY_WALLPAPER_THUMBNAIL);
-                values = createPreviewEntryString(id, PreviewColumns.KEY_WALLPAPER_THUMBNAIL, path);
-                themeValues.add(values);
-
-                path = compressAndSaveJpg(wallpaperItems.lsPreview, filesDir, pkgName,
-                        PreviewColumns.KEY_LOCK_WALLPAPER_PREVIEW);
-                values = createPreviewEntryString(id, PreviewColumns.KEY_LOCK_WALLPAPER_PREVIEW,
-                        path);
-                themeValues.add(values);
-
-                path = compressAndSavePng(wallpaperItems.lsThumbnail, filesDir, pkgName,
-                        PreviewColumns.KEY_LOCK_WALLPAPER_THUMBNAIL);
-                values = createPreviewEntryString(id, PreviewColumns.KEY_LOCK_WALLPAPER_THUMBNAIL,
-                        path);
-                themeValues.add(values);
+                if (wallpaperItems.wpPreview != null) {
+                    path = compressAndSaveJpg(wallpaperItems.wpPreview, filesDir, pkgName,
+                            PreviewColumns.KEY_WALLPAPER_PREVIEW);
+                    values = createPreviewEntryString(id,
+                            PreviewColumns.KEY_WALLPAPER_PREVIEW, path);
+                    themeValues.add(values);
+                }
+                if (wallpaperItems.wpThumbnail != null) {
+                    path = compressAndSavePng(wallpaperItems.wpThumbnail, filesDir, pkgName,
+                            PreviewColumns.KEY_WALLPAPER_THUMBNAIL);
+                    values = createPreviewEntryString(id,
+                            PreviewColumns.KEY_WALLPAPER_THUMBNAIL, path);
+                    themeValues.add(values);
+                }
+                if (wallpaperItems.lsPreview != null) {
+                    path = compressAndSaveJpg(wallpaperItems.lsPreview, filesDir, pkgName,
+                            PreviewColumns.KEY_LOCK_WALLPAPER_PREVIEW);
+                    values = createPreviewEntryString(id,
+                            PreviewColumns.KEY_LOCK_WALLPAPER_PREVIEW, path);
+                    themeValues.add(values);
+                }
+                if (wallpaperItems.lsThumbnail != null) {
+                    path = compressAndSavePng(wallpaperItems.lsThumbnail, filesDir, pkgName,
+                            PreviewColumns.KEY_LOCK_WALLPAPER_THUMBNAIL);
+                    values = createPreviewEntryString(id,
+                            PreviewColumns.KEY_LOCK_WALLPAPER_THUMBNAIL, path);
+                    themeValues.add(values);
+                }
             }
             if (styleItems != null) {
                 path = compressAndSavePng(styleItems.thumbnail, filesDir, pkgName,
@@ -371,6 +378,7 @@ public class PreviewGenerationService extends IntentService {
 
     private static String saveCompressedImage(byte[] image, String baseDir, String pkgName,
                                               String fileName) {
+        if (image == null) return null;
         // Create relevant directories
         String previewsDir = baseDir + File.separator + PREVIEWS_DIR;
         String pkgDir = previewsDir + File.separator + pkgName;
