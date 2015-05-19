@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a89bdaa_fdd8f01f",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-05-19T10:20:20Z",
+      "side": 1,
+      "message": "no longer falling through",
+      "revId": "b314dc8d48544d153790040e7306abab37b16437",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a89bdaa_5dfe3c6c",
+        "filename": "src/org/cyanogenmod/themes/provider/util/ProviderUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-05-19T10:20:20Z",
+      "side": 1,
+      "message": "indentation should follow AOSP style of 8 spaces in from the start of the method declaration.",
+      "revId": "b314dc8d48544d153790040e7306abab37b16437",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
