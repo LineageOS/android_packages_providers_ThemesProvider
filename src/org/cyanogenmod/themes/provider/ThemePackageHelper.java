@@ -37,7 +37,9 @@ import android.provider.ThemesContract.ThemesColumns.InstallState;
 import android.util.Log;
 import org.cyanogenmod.themes.provider.util.ProviderUtils;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,6 +70,8 @@ public class ThemePackageHelper {
                 "overlays/com.android.systemui");
         sComponentToFolderName.put(ThemesColumns.MODIFIES_NAVIGATION_BAR,
                 "overlays/com.android.systemui");
+        sComponentToFolderName.put(ThemesColumns.MODIFIES_ANIMATED_LOCKSCREEN,
+                "animated-lockscreen");
     }
 
     public static boolean insertPackage(Context context, String pkgName, boolean isProcessing)
