@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df140735_5cc271eb",
+        "filename": "src/org/cyanogenmod/themes/provider/util/WallpaperPreviewGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 12937
+      },
+      "writtenOn": "2015-07-21T20:48:50Z",
+      "side": 1,
+      "message": "passing null as the asset path will return null for createWallpaperItems. See comment below.",
+      "range": {
+        "startLine": 66,
+        "startChar": 52,
+        "endLine": 66,
+        "endChar": 56
+      },
+      "revId": "6a3c171829e2634472451a796f7e07a5a55439d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df140735_1cbcf967",
+        "filename": "src/org/cyanogenmod/themes/provider/util/WallpaperPreviewGenerator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 12937
+      },
+      "writtenOn": "2015-07-21T20:48:50Z",
+      "side": 1,
+      "message": "Above you pass null as the assetPath, it will always hit this.",
+      "range": {
+        "startLine": 108,
+        "startChar": 22,
+        "endLine": 108,
+        "endChar": 29
+      },
+      "revId": "6a3c171829e2634472451a796f7e07a5a55439d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
