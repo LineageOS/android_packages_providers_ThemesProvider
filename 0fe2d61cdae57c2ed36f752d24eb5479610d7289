@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f2f7f8d_88930650",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2015-11-05T01:46:18Z",
+      "side": 1,
+      "message": "This change has nothing to do with the patch.  It\u0027s not a bad thing to do but it\u0027s out of scope based on the subject of this patch.",
+      "revId": "0fe2d61cdae57c2ed36f752d24eb5479610d7289",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
