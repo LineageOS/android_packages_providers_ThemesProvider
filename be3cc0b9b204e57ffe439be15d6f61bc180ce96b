@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fcbff3d_be9138f4",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesOpenHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 14421
+      },
+      "writtenOn": "2016-01-15T07:52:17Z",
+      "side": 1,
+      "message": "Missed a few spaces after the commas :(",
+      "range": {
+        "startLine": 493,
+        "startChar": 16,
+        "endLine": 494,
+        "endChar": 81
+      },
+      "revId": "be3cc0b9b204e57ffe439be15d6f61bc180ce96b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
