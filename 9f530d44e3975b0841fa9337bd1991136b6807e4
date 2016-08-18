@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fa4df85_bbc87274",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T14:36:45Z",
+      "side": 1,
+      "message": "this block should only be needed when deleting a theme mix and not a theme mix entry.",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 22
+      },
+      "revId": "9f530d44e3975b0841fa9337bd1991136b6807e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_9bd7b624",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T14:36:45Z",
+      "side": 1,
+      "message": "nit: space between \u0027/\u0027 and \u0027U\u0027",
+      "revId": "9f530d44e3975b0841fa9337bd1991136b6807e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_5be13efe",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T14:36:45Z",
+      "side": 1,
+      "message": "I\u0027d assign this to a variable since the package name is also needed for processing of previews.  This will avoid having to call values.getAsString() twice",
+      "range": {
+        "startLine": 277,
+        "startChar": 41,
+        "endLine": 277,
+        "endChar": 83
+      },
+      "revId": "9f530d44e3975b0841fa9337bd1991136b6807e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_9bc01653",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T14:36:45Z",
+      "side": 1,
+      "message": "needs spaces between parameters and wrapped to a newline since it is over 100 chars in length\nLines 488, 489, 492 and 493",
+      "range": {
+        "startLine": 488,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 73
+      },
+      "revId": "9f530d44e3975b0841fa9337bd1991136b6807e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_dbc52e5d",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T14:36:45Z",
+      "side": 1,
+      "message": "change to \"theme mixes\"",
+      "range": {
+        "startLine": 588,
+        "startChar": 19,
+        "endLine": 588,
+        "endChar": 36
+      },
+      "revId": "9f530d44e3975b0841fa9337bd1991136b6807e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_3baa4285",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T14:36:45Z",
+      "side": 1,
+      "message": "multiple lines that are \u003e 100 chars, need to cleanly wrap them to a new line",
+      "range": {
+        "startLine": 624,
+        "startChar": 0,
+        "endLine": 674,
+        "endChar": 119
+      },
+      "revId": "9f530d44e3975b0841fa9337bd1991136b6807e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
