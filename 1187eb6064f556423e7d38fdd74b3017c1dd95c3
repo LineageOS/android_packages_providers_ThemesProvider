@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fa4df85_51711fe0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T20:41:03Z",
+      "side": 1,
+      "message": "no need to add this to the commit message.  The review process should suffice for showing the history of what changed between various patch sets and why they were changed.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "1187eb6064f556423e7d38fdd74b3017c1dd95c3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_11ae472e",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T20:41:03Z",
+      "side": 1,
+      "message": "should be values.getAsString(ThemesColumns.PKG_NAME);\nthis way you just reuse the string that was retrieved from the ContentValues",
+      "range": {
+        "startLine": 254,
+        "startChar": 30,
+        "endLine": 254,
+        "endChar": 52
+      },
+      "revId": "1187eb6064f556423e7d38fdd74b3017c1dd95c3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_f1b04b8e",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T20:41:03Z",
+      "side": 1,
+      "message": "use camelcase for names rather than separating words with _\n\"packageName\" or \"pkgName\"",
+      "range": {
+        "startLine": 254,
+        "startChar": 15,
+        "endLine": 254,
+        "endChar": 27
+      },
+      "revId": "1187eb6064f556423e7d38fdd74b3017c1dd95c3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_b1aad316",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T20:41:03Z",
+      "side": 1,
+      "message": "should just be the variable that contains the extracted package name from the ContentValues",
+      "range": {
+        "startLine": 268,
+        "startChar": 41,
+        "endLine": 268,
+        "endChar": 73
+      },
+      "revId": "1187eb6064f556423e7d38fdd74b3017c1dd95c3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_71621b19",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T20:41:03Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 277,
+        "startChar": 24,
+        "endLine": 277,
+        "endChar": 66
+      },
+      "revId": "1187eb6064f556423e7d38fdd74b3017c1dd95c3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_91679726",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-08-18T20:41:03Z",
+      "side": 1,
+      "message": "still need spaces between parameters",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 486,
+        "endChar": 73
+      },
+      "revId": "1187eb6064f556423e7d38fdd74b3017c1dd95c3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
