@@ -33,6 +33,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Process;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -87,8 +88,8 @@ public class ThemesProvider extends ContentProvider {
 
     public static final String KEY_PROCESS_PREVIEWS = "process_previews";
 
-    private final Handler mHandler = new Handler();
-    private ThemesOpenHelper mDatabase;
+    private Handler mHandler;
+    protected ThemesOpenHelper mDatabase;
 
     static {
         sUriMatcher.addURI(ThemesContract.AUTHORITY, "mixnmatch/", MIXNMATCH);
@@ -147,7 +148,16 @@ public class ThemesProvider extends ContentProvider {
                 String filesDir = getContext().getFilesDir().getAbsolutePath();
                 String themePreviewsDir = filesDir + File.separator +
                         PreviewUtils.PREVIEWS_DIR + File.separator + pkgName;
-                PreviewGenerationService.clearThemePreviewsDir(themePreviewsDir);
+
+                String selection_them_mix_entries = "package_name=?";
+                String[] selectionArgs_theme_mix_entries = {pkgName};
+                Cursor cur = sqlDB.query(ThemeMixEntriesTable.TABLE_NAME,null,selection_them_mix_entries,
+                        selectionArgs_theme_mix_entries,null,null,null);
+                int count = cur.getCount();
+                if(count==0) {
+                    PreviewGenerationService.clearThemePreviewsDir(themePreviewsDir);
+                }
+                cur.close();
 
                 // mark theme mix entries for this package as uninstalled
                 final String where = ThemeMixEntryColumns.PACKAGE_NAME + "=?";
@@ -211,8 +221,7 @@ public class ThemesProvider extends ContentProvider {
         case THEME_MIX_ENTRIES_ID:
             sqlDB = mDatabase.getWritableDatabase();
             // Get the theme's _id and delete preview images
-            rowsDeleted = sqlDB.delete(ThemeMixEntriesTable.TABLE_NAME,
-                        ThemeMixEntryColumns.THEME_MIX_ID + "=" + c.getInt(idx), null);
+            rowsDeleted = sqlDB.delete(ThemeMixEntriesTable.TABLE_NAME, selection, selectionArgs);
 
             if (rowsDeleted > 0) {
                 getContext().getContentResolver().notifyChange(uri, null);
@@ -340,6 +349,7 @@ public class ThemesProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         mDatabase = new ThemesOpenHelper(getContext());
+        mHandler = new Handler();
 
         /**
          * Sync database with package manager
@@ -431,7 +441,6 @@ public class ThemesProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-
         int rowsUpdated = 0;
         SQLiteDatabase sqlDB = mDatabase.getWritableDatabase();
 
@@ -476,15 +485,15 @@ public class ThemesProvider extends ContentProvider {
             getContext().getContentResolver().notifyChange(uri, null);
             break;
         case THEME_MIXES:
-                rowsUpdated = sqlDB.update
+            rowsUpdated = sqlDB.update
                         (ThemeMixesTable.TABLE_NAME, values, selection, selectionArgs);
-                getContext().getContentResolver().notifyChange(uri,null);
-                break;
+            getContext().getContentResolver().notifyChange(uri,null);
+            break;
         case THEME_MIX_ENTRIES:
-                rowsUpdated = sqlDB.update
+            rowsUpdated = sqlDB.update
                         (ThemeMixEntriesTable.TABLE_NAME, values, selection, selectionArgs);
-                getContext().getContentResolver().notifyChange(uri,null);
-                break;
+            getContext().getContentResolver().notifyChange(uri,null);
+            break;
         }
         return rowsUpdated;
     }
