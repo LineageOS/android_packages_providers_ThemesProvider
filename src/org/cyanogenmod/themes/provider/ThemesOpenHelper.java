@@ -40,7 +40,7 @@ import org.cyanogenmod.internal.util.ThemeUtils;
 public class ThemesOpenHelper extends SQLiteOpenHelper {
     private static final String TAG = ThemesOpenHelper.class.getName();
 
-    private static final int DATABASE_VERSION = 21;
+    private static final int DATABASE_VERSION = 22;
     private static final String DATABASE_NAME = "themes.db";
     private static final String SYSTEM_THEME_PKG_NAME = ThemeConfig.SYSTEM_DEFAULT;
     private static final String OLD_SYSTEM_THEME_PKG_NAME = "holo";
@@ -145,6 +145,10 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
             if (oldVersion == 20) {
                 upgradeToVersion21(db);
                 oldVersion = 21;
+            }
+            if (oldVersion == 21) {
+                upgradeToVersion22(db);
+                oldVersion = 22;
             }
             if (oldVersion != DATABASE_VERSION) {
                 Log.e(TAG, "Recreating db because unknown database version: " + oldVersion);
@@ -511,6 +515,13 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
         db.execSQL(ThemeMixEntriesTable.THEME_MIX_ENTRIES_TABLE_CREATE);
     }
 
+    private void upgradeToVersion22(SQLiteDatabase db) {
+        // add theme_id column to theme_mix_entries.db
+        String sql = String.format("ALTER TABLE %s ADD COLUMN %s INTEGER DEFAULT -1",
+                ThemeMixEntriesTable.TABLE_NAME, ThemeMixEntryColumns.THEME_ID);
+        db.execSQL(sql);
+    }
+
     private void dropTables(SQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS " + ThemesTable.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + MixnMatchTable.TABLE_NAME);
@@ -684,6 +695,7 @@ public class ThemesOpenHelper extends SQLiteOpenHelper {
                         ThemeMixEntryColumns.COMPONENT_TYPE + " TEXT NON NULL, " +
                         ThemeMixEntryColumns.COMPONENT_ID + " INTEGER DEFAULT 0," +
                         ThemeMixEntryColumns.PACKAGE_NAME + " TEXT NOT NULL, " +
+                        ThemeMixEntryColumns.THEME_ID + " INTEGER DEFAULT -1" +
                         ThemeMixEntryColumns.THEME_NAME + " TEXT NOT NULL, " +
                         ThemeMixEntryColumns.IS_INSTALLED + " INTEGER DEFAULT 1, " +
                         "FOREIGN KEY(" + ThemeMixEntryColumns.THEME_MIX_ID + ") REFERENCES " +
