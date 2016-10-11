@@ -137,9 +137,6 @@ public class ThemesProvider extends ContentProvider {
                     selectionArgs, null, null, null);
             if (c == null) return 0;
             if (c.moveToFirst()) {
-                idx = c.getColumnIndex(ThemesColumns._ID);
-                sqlDB.delete(PreviewsTable.TABLE_NAME,
-                        PreviewColumns.THEME_ID + "=" + c.getInt(idx), null);
 
                 // Remove preview files associated with theme
                 idx = c.getColumnIndex(ThemesColumns.PKG_NAME);
@@ -153,8 +150,12 @@ public class ThemesProvider extends ContentProvider {
                 Cursor cur = sqlDB.query(ThemeMixEntriesTable.TABLE_NAME, null,
                         selectionThemeMixEntries, selectionArgsThemeMixEntries, null, null, null);
                 int count = cur.getCount();
+
+                idx = c.getColumnIndex(ThemesColumns._ID);
                 if(count == 0) {
                     PreviewGenerationService.clearThemePreviewsDir(themePreviewsDir);
+                    sqlDB.delete(PreviewsTable.TABLE_NAME,
+                            PreviewColumns.THEME_ID + "=" + c.getInt(idx), null);
                 }
                 cur.close();
 
@@ -593,31 +594,35 @@ public class ThemesProvider extends ContentProvider {
     private Cursor getThemeMixPreviews(SQLiteDatabase db, long themeMixId) {
         String[] projection = {ThemeMixEntryColumns.COMPONENT_TYPE,
                 ThemeMixEntryColumns.COMPONENT_ID,
-                ThemeMixEntryColumns.PACKAGE_NAME};
-        String selection = ThemeMixEntryColumns.THEME_MIX_ID + "=? AND " +
-                ThemeMixEntryColumns.IS_INSTALLED + "=?";
-        String[] selectionArgs = { Long.toString(themeMixId), "1" };
+                ThemeMixEntryColumns.PACKAGE_NAME,
+                ThemeMixEntryColumns.THEME_ID};
+//        String selection = ThemeMixEntryColumns.THEME_MIX_ID + "=? AND " +
+//                ThemeMixEntryColumns.IS_INSTALLED + "=?";
+//        String[] selectionArgs = { Long.toString(themeMixId), "1" };
+        String selection = ThemeMixEntryColumns.THEME_MIX_ID + "=?";
+        String[] selectionArgs = { Long.toString(themeMixId)};
         Cursor c = db.query(ThemeMixEntriesTable.TABLE_NAME, projection, selection, selectionArgs,
                 null, null, null);
         if (c != null) {
             StringBuilder sb = new StringBuilder("SELECT * FROM ");
             String delimeter = "";
+            int id = -1;
             while (c.moveToNext()) {
                 String component = c.getString(0);
                 int componentId = c.getInt(1);
                 String pkgName = c.getString(2);
+                id = c.getInt(3);
                 if (component != null && pkgName != null) {
                     // We need to get the theme's id using its package name
-                    String[] columns = { ThemesColumns._ID };
-                    selection = ThemesColumns.PKG_NAME + "=? AND " + component + "=?";
-                    selectionArgs = new String[] {pkgName, "1"};
-                    Cursor current = db.query(ThemesTable.TABLE_NAME, columns, selection,
-                            selectionArgs, null, null, null);
-                    int id = -1;
-                    if (current != null) {
-                        if (current.moveToFirst()) id = current.getInt(0);
-                        current.close();
-                    }
+//                    String[] columns = { ThemesColumns._ID };
+//                    selection = ThemesColumns.PKG_NAME + "=? AND " + component + "=?";
+//                    selectionArgs = new String[] {pkgName, "1"};
+//                    Cursor current = db.query(ThemesTable.TABLE_NAME, columns, selection,
+//                            selectionArgs, null, null, null);
+//                    if (current != null) {
+//                        if (current.moveToFirst()) id = current.getInt(0);
+//                        current.close();
+//                    }
                     if (id >= 0) {
                         if (ThemesColumns.MODIFIES_STATUS_BAR.equals(component)) {
                             for (String previewKey : PreviewsTable.STATUS_BAR_PREVIEW_KEYS) {
