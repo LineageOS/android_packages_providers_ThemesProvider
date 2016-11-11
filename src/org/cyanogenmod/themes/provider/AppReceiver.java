@@ -48,9 +48,9 @@ public class AppReceiver extends BroadcastReceiver {
                     // Edge case where app was not a theme in previous install
                     ThemePackageHelper.insertPackage(context, pkgName, true);
                 }
-            } else if (Intent.ACTION_THEME_RESOURCES_CACHED.equals(action)) {
-                final String themePkgName = intent.getStringExtra(Intent.EXTRA_THEME_PACKAGE_NAME);
-                final int result = intent.getIntExtra(Intent.EXTRA_THEME_RESULT,
+            } else if (cyanogenmod.content.Intent.ACTION_THEME_RESOURCES_CACHED.equals(action)) {
+                final String themePkgName = intent.getStringExtra(cyanogenmod.content.Intent.EXTRA_THEME_PACKAGE_NAME);
+                final int result = intent.getIntExtra(cyanogenmod.content.Intent.EXTRA_THEME_RESULT,
                         PackageManager.INSTALL_FAILED_THEME_UNKNOWN_ERROR);
                 if (result == 0) {
                     if (ProviderUtils.themeExistsInProvider(context, themePkgName)) {
