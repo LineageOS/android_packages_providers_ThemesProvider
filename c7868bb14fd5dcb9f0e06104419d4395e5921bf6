@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_eacf987c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-12-16T17:15:12Z",
+      "side": 1,
+      "message": "I\u0027d change the subject to something that indicates what the change is, e.g. \"Add THEME_ID column to theme mix entries\"",
+      "revId": "c7868bb14fd5dcb9f0e06104419d4395e5921bf6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f681702_0ac5b45b",
+        "filename": "src/org/cyanogenmod/themes/provider/ThemesProvider.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 9199
+      },
+      "writtenOn": "2016-12-16T17:15:12Z",
+      "side": 1,
+      "message": "should null check cur first before using it",
+      "revId": "c7868bb14fd5dcb9f0e06104419d4395e5921bf6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
