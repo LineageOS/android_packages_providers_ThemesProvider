@@ -16,8 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Пастаўшчык тэмаў</string>
-  <!-- For when an "legacy" icon pack does not have an app name -->
-  <string name="unknown_app_name">Невядомы</string>
-  <string name="controls_preview_button_text">Звычайная</string>
+    <string name="app_name">Пастаўшчык тэмаў</string>
+    <string name="unknown_app_name">Невядомы</string>
+    <string name="controls_preview_button_text">Звычайная</string>
 </resources>

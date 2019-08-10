@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">තේමා ප්‍රතිපාදක</string>
-  <!-- For when an "legacy" icon pack does not have an app name -->
-  <string name="unknown_app_name">නොදනී</string>
+    <string name="app_name">තේමා ප්‍රතිපාදක</string>
+    <string name="unknown_app_name">නොදනී</string>
 </resources>

@@ -16,5 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <!-- For when an "legacy" icon pack does not have an app name -->
+    <string name="app_name">Temaprovider</string>
+    <string name="unknown_app_name">Unbekend</string>
+    <string name="controls_preview_button_text">Normaal</string>
 </resources>

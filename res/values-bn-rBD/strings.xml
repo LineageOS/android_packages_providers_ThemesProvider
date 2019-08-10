@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">থিমস প্রদানকারী</string>
-  <!-- For when an "legacy" icon pack does not have an app name -->
-  <string name="unknown_app_name">অজানা</string>
+    <string name="app_name">থিমস প্রদানকারী</string>
+    <string name="unknown_app_name">অজানা</string>
 </resources>

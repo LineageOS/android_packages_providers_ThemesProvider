@@ -16,8 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">ئۆرنەك تەمىنلىگۈچى</string>
-  <!-- For when an "legacy" icon pack does not have an app name -->
-  <string name="unknown_app_name">يوچۇن</string>
-  <string name="controls_preview_button_text">ئادەتتىكى</string>
+    <string name="app_name">ئۆرنەك تەمىنلىگۈچى</string>
+    <string name="unknown_app_name">يوچۇن</string>
+    <string name="controls_preview_button_text">ئادەتتىكى</string>
 </resources>

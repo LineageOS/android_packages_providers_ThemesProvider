@@ -16,5 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <!-- For when an "legacy" icon pack does not have an app name -->
+    <string name="app_name">Darparwr Themâu</string>
+    <string name="unknown_app_name">Anhysybys</string>
+    <string name="controls_preview_button_text">Arferol</string>
 </resources>
